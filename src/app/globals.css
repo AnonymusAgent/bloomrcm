@@ -1,0 +1,309 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------ */
+/* Design tokens — light theme (default)                               */
+/* ------------------------------------------------------------------ */
+:root {
+  --background: #ffffff;
+  --background-subtle: #f2f6fb;
+  --card: #ffffff;
+  --foreground: #0b1b31;
+  --muted-foreground: #4d617d;
+  --primary: #1552c4;
+  --primary-strong: #0f3f9b;
+  --primary-foreground: #ffffff;
+  --accent: #0b8f85;
+  --accent-soft: #e3f3f1;
+  --border: #c6d4ea;
+  --ring: #1552c4;
+  --navy: #0a2347;
+  --navy-strong: #071831;
+  --header-bg: rgba(255, 255, 255, 0.82);
+  --shadow-soft: 0 1px 2px rgba(10, 35, 71, 0.05), 0 8px 24px -12px rgba(10, 35, 71, 0.14);
+}
+
+/* ------------------------------------------------------------------ */
+/* Design tokens — dark theme                                          */
+/* ------------------------------------------------------------------ */
+.dark {
+  --background: #091120;
+  --background-subtle: #0c1830;
+  --card: #101d36;
+  --foreground: #e6edf9;
+  --muted-foreground: #93a6c4;
+  --primary: #5f92ec;
+  --primary-strong: #8db2f5;
+  --primary-foreground: #071021;
+  --accent: #33d0bf;
+  --accent-soft: #0f2d33;
+  --border: #203354;
+  --ring: #7ba7f2;
+  --navy: #050c18;
+  --navy-strong: #03080f;
+  --header-bg: rgba(9, 17, 32, 0.78);
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 28px -14px rgba(0, 0, 0, 0.55);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-subtle: var(--background-subtle);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-navy: var(--navy);
+  --color-navy-strong: var(--navy-strong);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--primary) 22%, transparent);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 0.75rem 0;
+  font-weight: 600;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion — restrained by default, honoured globally                   */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+html.a11y-reduce-motion *,
+html.a11y-reduce-motion *::before,
+html.a11y-reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* Accessibility toolbar modes                                         */
+/* ------------------------------------------------------------------ */
+html.a11y-grayscale body {
+  filter: grayscale(1);
+}
+
+html.a11y-contrast {
+  --background: #ffffff;
+  --background-subtle: #eef3f9;
+  --card: #ffffff;
+  --foreground: #000814;
+  --muted-foreground: #26313f;
+  --primary: #0b3ea8;
+  --primary-strong: #082e7d;
+  --border: #54677f;
+  --ring: #0b3ea8;
+}
+html.dark.a11y-contrast {
+  --background: #000814;
+  --background-subtle: #071022;
+  --card: #071022;
+  --foreground: #ffffff;
+  --muted-foreground: #d3e0f4;
+  --primary: #9dc0ff;
+  --primary-strong: #c4d9ff;
+  --border: #7d95bb;
+  --ring: #b3d0ff;
+}
+
+html.a11y-underline-links main a:not([data-plain]):not([class*="btn"]),
+html.a11y-underline-links footer a:not([data-plain]):not([class*="btn"]) {
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 2px;
+}
+
+html.a11y-highlight-links main a:not([data-plain]):not([class*="btn"]),
+html.a11y-highlight-links footer a:not([data-plain]):not([class*="btn"]) {
+  background: color-mix(in oklab, #ffd83d 42%, transparent);
+  outline: 2px solid #d4a900;
+  border-radius: 3px;
+  padding-inline: 2px;
+}
+
+html.a11y-focus *:focus-visible {
+  outline: 3px solid var(--ring) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 6px color-mix(in oklab, var(--ring) 26%, transparent);
+}
+
+html.a11y-readable body {
+  font-family: Verdana, "Segoe UI", Tahoma, Arial, sans-serif;
+  letter-spacing: 0.018em;
+  word-spacing: 0.05em;
+}
+html.a11y-readable p,
+html.a11y-readable li {
+  line-height: 1.85;
+}
+
+/* ------------------------------------------------------------------ */
+/* Purposeful 3D revenue-cycle scene                                   */
+/* ------------------------------------------------------------------ */
+.rcm-scene-shell {
+  perspective: 1200px;
+  perspective-origin: 50% 45%;
+}
+
+.rcm-scene {
+  --scene-rx: 0deg;
+  --scene-ry: 0deg;
+  --scene-x: 0px;
+  --scene-y: 0px;
+  transform-style: preserve-3d;
+  transform: translate3d(var(--scene-x), var(--scene-y), 0) rotateX(var(--scene-rx)) rotateY(var(--scene-ry));
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.rcm-scene-back {
+  transform: translateZ(-54px) rotateZ(-3deg);
+  box-shadow: 0 28px 70px -36px rgba(10, 35, 71, 0.65);
+}
+
+.rcm-scene-main {
+  transform: translateZ(0);
+  box-shadow:
+    0 32px 65px -28px rgba(8, 31, 67, 0.72),
+    0 8px 22px -12px rgba(8, 31, 67, 0.4);
+}
+
+.rcm-scene-card,
+.rcm-scene-payment,
+.rcm-scene-shield {
+  transform-style: preserve-3d;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 300ms ease;
+}
+
+.rcm-scene-shell:hover .rcm-scene-card {
+  box-shadow: 0 24px 38px -22px rgba(8, 31, 67, 0.55);
+}
+
+.rcm-scene-ring {
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.rcm-scene-ring-one {
+  transform: translate(-50%, -50%) translateZ(32px) rotateX(68deg);
+  animation: rcm-orbit 18s linear infinite;
+}
+
+.rcm-scene-ring-two {
+  transform: translate(-50%, -50%) translateZ(16px) rotateX(68deg) rotateZ(38deg);
+  animation: rcm-orbit-reverse 24s linear infinite;
+}
+
+@keyframes rcm-orbit {
+  to {
+    transform: translate(-50%, -50%) translateZ(32px) rotateX(68deg) rotateZ(360deg);
+  }
+}
+
+@keyframes rcm-orbit-reverse {
+  to {
+    transform: translate(-50%, -50%) translateZ(16px) rotateX(68deg) rotateZ(-322deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rcm-scene {
+    transform: none !important;
+  }
+  .rcm-scene-ring {
+    animation: none !important;
+  }
+}
+html.a11y-reduce-motion .rcm-scene {
+  transform: none !important;
+}
+html.a11y-reduce-motion .rcm-scene-ring {
+  animation: none !important;
+}
+
+/* Workflow cards lift in depth only where the process diagram benefits. */
+.workflow-depth-card {
+  transform-style: preserve-3d;
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1), border-color 240ms ease, background-color 240ms ease;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .workflow-depth-card:hover {
+    transform: perspective(800px) translateY(-5px) rotateX(2deg) rotateY(-1.5deg);
+  }
+  .workflow-depth-card:nth-child(even):hover {
+    transform: perspective(800px) translateY(-5px) rotateX(2deg) rotateY(1.5deg);
+  }
+}
+
+/* Fine-grained motion utilities used by the workflow diagram */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* FAQ accordion marker */
+details.faq-item > summary::-webkit-details-marker {
+  display: none;
+}
+details.faq-item > summary {
+  list-style: none;
+}
+details.faq-item[open] .faq-chevron {
+  transform: rotate(180deg);
+}
