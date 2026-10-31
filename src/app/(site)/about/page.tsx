@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ArrowRight, BadgeCheck, Compass, HeartHandshake, ShieldCheck, Target } from "lucide-react";
 import { ButtonLink, Card, Container, CtaBand, SectionHeading } from "@/components/ui";
 import { getAboutContent, getExperiences, getSettings } from "@/lib/content";
@@ -95,23 +96,22 @@ export default async function AboutPage() {
       <section aria-labelledby="founder-heading" className="bg-background-subtle/70 py-14 sm:py-18">
         <Container className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.4fr]">
           <div className="mx-auto w-full max-w-sm">
-            <div className="flex aspect-[4/5] flex-col items-center justify-center rounded-3xl border border-border bg-gradient-to-br from-navy to-primary p-8 text-center shadow-xl">
-              <span
-                className="inline-flex h-24 w-24 items-center justify-center rounded-full bg-white/10 font-display text-3xl font-extrabold text-white ring-2 ring-white/25"
+            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-border shadow-xl">
+              <Image
+                src="/images/founder.jpg"
+                alt={`Portrait of ${about.founderName}`}
+                fill
+                sizes="(max-width: 1024px) 90vw, 24rem"
+                className="object-cover"
+              />
+              <div
                 aria-hidden="true"
-              >
-                {about.founderName
-                  .split(/\s+/)
-                  .filter(Boolean)
-                  .slice(0, 2)
-                  .map((w) => w[0]?.toUpperCase())
-                  .join("") || "F"}
-              </span>
-              <p className="mt-5 font-display text-xl font-bold text-white">{about.founderName}</p>
-              <p className="mt-1 text-sm font-medium text-blue-100/80">{about.founderHeadline}</p>
-              <p className="mt-4 rounded-full bg-white/10 px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-teal-200">
-                Photo to be added
-              </p>
+                className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/25 to-transparent"
+              />
+              <div className="absolute inset-x-0 bottom-0 p-6">
+                <p className="font-display text-xl font-bold text-white">{about.founderName}</p>
+                <p className="mt-1 text-sm font-medium text-blue-100/85">{about.founderHeadline}</p>
+              </div>
             </div>
           </div>
           <div>
@@ -123,7 +123,7 @@ export default async function AboutPage() {
             {experiences.length > 0 ? (
               <p className="mt-4 text-base leading-[1.8] text-muted-foreground">
                 Before starting this practice, the founder worked in medical billing and revenue cycle operations at{" "}
-                {experiences.map((e) => e.organization).join(", ")} — experience that directly informs this company's
+                {experiences.map((e) => e.organization).join(", ")} — experience that directly informs this company&apos;s
                 documented, workflow-first approach.
               </p>
             ) : null}
