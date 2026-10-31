@@ -14,7 +14,7 @@ export const siteDefaults = {
   name: "Bloom RCM",
   shortName: "Bloom RCM",
   tagline: "Independent medical billing & revenue cycle support for US healthcare providers.",
-  email: "webloomofficial@gmail.com",
+  email: "bloomrcm@gmail.com",
   phone: "+92 (317) 935-6276",
   address: "Remote practice serving US healthcare providers",
   websiteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",

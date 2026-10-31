@@ -13,7 +13,7 @@ VALUES (
   1,
   'Bloom RCM',
   'Independent medical billing & revenue cycle support for US healthcare providers.',
-  'webloomofficial@gmail.com',
+  'bloomrcm@gmail.com',
   '+92 (317) 935-6276',
   'Remote practice serving US healthcare providers',
   'http://localhost:3000',
