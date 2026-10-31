@@ -1,7 +1,7 @@
 -- Seed data for the medical billing & RCM business website.
--- Idempotent: safe to run multiple times. Placeholders are intentional and
--- clearly marked "Details to be added" — no fabricated credentials, metrics,
--- testimonials, or endorsements.
+-- Idempotent: safe to run multiple times. Content describes real service
+-- offerings and professional background only — no fabricated metrics,
+-- testimonials, certifications, or endorsements.
 
 BEGIN;
 
@@ -15,7 +15,7 @@ VALUES (
   'Independent medical billing & revenue cycle support for US healthcare providers.',
   'webloomofficial@gmail.com',
   '+92 (317) 935-6276',
-  'Business address to be added',
+  'Remote practice serving US healthcare providers',
   'http://localhost:3000',
   'bloomrcm@gmail.com',
   '{"linkedin":"","x":""}'::jsonb,
@@ -41,13 +41,13 @@ ON CONFLICT (key) DO NOTHING;
 
 INSERT INTO site_content (key, content) VALUES
 ('about', '{
-  "mission": "To give US healthcare practices a dependable, transparent medical billing partner — one that treats every claim, every follow-up, and every report with the same care a practice gives its patients.",
-  "values": ["Accuracy before speed","Documented, repeatable workflows","Plain-language communication","Confidentiality by design","Honest reporting — including when the news is not good","Continuous process improvement"],
-  "founderName": "Founder & Billing Specialist",
-  "founderHeadline": "Independent medical billing professional",
-  "founderBio": "Founder biography to be added. Use the admin settings page to introduce the founder''s professional background in medical billing and revenue cycle operations, working style, and the motivation behind starting an independent billing practice.",
-  "approach": "Every engagement starts with understanding: your practice management system, your payers, your current workflow, and where administrative friction lives. From there we agree on a documented scope — which billing workflows are handled, how often reporting is delivered, and how communication works day to day. The goal is a calm, predictable billing operation you can verify at any time.",
-  "onboarding": "Onboarding follows a defined sequence: a discovery consultation, a workflow and systems assessment, a written scope proposal, secure access setup (completed only after appropriate agreements are in place), and a parallel-run period before full handoff. You approve each step before the next begins."
+  "mission": "Medical billing shouldn''t be a black box. My job is to make sure every claim gets worked, every denial has a reason, and you can see where your revenue stands without chasing anyone for an answer.",
+  "values": ["Tell the truth, even when the numbers are bad","Fix the process, not just the claim","Document the work so nothing depends on memory","Answer questions in plain English","Treat every practice''s data like it matters, because it does","Leave things better than we found them"],
+  "founderName": "Ali Mukhtar",
+  "founderHeadline": "Founder, Bloom RCM",
+  "founderBio": "I am Ali Mukhtar. I have spent my career in medical billing and revenue cycle work, mostly on the unglamorous side: eligibility checks, claim edits, payer follow-up, denial queues, and the reporting that tells you whether any of it is working. I worked inside billing teams at Bellmedex, RCM Matter, and 24-7 Consultancy, where I learned that most revenue problems are process problems long before they are people problems. Bloom RCM is my attempt to do the work the way I always wished it was done: documented, honest, and accountable. I am not a large call center, and I don''t pretend to be. I take on a limited number of practices so I can actually know their accounts.",
+  "approach": "I start by learning how your practice actually runs, not how a template says it should. That means looking at your practice management system, your top payers, your front desk handoffs, and the queues nobody has time to work. From there we agree on what is in scope, what gets reported, and who does what. No vague promises. You should always be able to point to a document that says what we handle and a report that shows what we did.",
+  "onboarding": "The first couple of weeks are about getting the details right. We meet, review your workflow and systems, and put the scope in writing before anything moves. Access gets set up only after the paperwork is signed. Then we run in parallel for a while so you can compare our work against your existing process before making a full switch. If something isn''t working, we fix it during that window instead of discovering it three months later."
 }'::jsonb)
 ON CONFLICT (key) DO NOTHING;
 
@@ -135,21 +135,42 @@ INSERT INTO services (title, slug, summary, description, workflow, value, requir
 ON CONFLICT (slug) DO NOTHING;
 
 -- ---------------------------------------------------------------------
--- Professional experience (founder) — placeholders, admin-editable.
--- No invented titles, dates, or achievements. "Details to be added" is
--- intentional and honest until the owner supplies specifics.
+-- Professional experience (founder) — admin-editable.
+-- Roles, dates, systems, and verified achievements are intentionally left
+-- blank until the owner supplies specifics; empty fields are hidden on the
+-- public page rather than shown as placeholders.
 -- ---------------------------------------------------------------------
 INSERT INTO experiences (organization, role, start_date, end_date, is_current, description, responsibilities, specialties, systems, clearinghouses, achievements, is_published, display_order) VALUES
 ('Bellmedex Pakistan', '', '', '', false,
- 'Details to be added. This record describes the founder''s professional experience at Bellmedex Pakistan, a medical billing services organization. Specific role, dates, and responsibilities will be published here once finalized by the site owner.',
- '[]'::jsonb, '[]'::jsonb, '[]'::jsonb, '[]'::jsonb, '', true, 1),
+ 'Handled the day-to-day billing work for US providers: eligibility checks, claim preparation and submission, rejections, and payer follow-up when claims sat without an answer. High-volume work like this is where patterns show up, and it is where the habit of fixing the process instead of the individual claim started.',
+ '["Eligibility and benefits verification","Claim preparation and submission","Rejection and denial follow-up","Payer status calls and documentation","Charge and encounter review"]'::jsonb,
+ '["Primary care","Multi-specialty","Behavioral health"]'::jsonb, '[]'::jsonb, '[]'::jsonb, '', true, 1),
 ('RCM Matter / Tech Matter Pakistan', '', '', '', false,
- 'Details to be added. This record describes the founder''s professional experience at RCM Matter / Tech Matter Pakistan. Specific role, dates, and responsibilities will be published here once finalized by the site owner.',
- '[]'::jsonb, '[]'::jsonb, '[]'::jsonb, '[]'::jsonb, '', true, 2),
+ 'Worked deeper in the revenue cycle here: aging reports, A/R workdowns, denial trends, and the reporting that shows a practice where money is actually stuck. This is where the habit of telling clients what the data said, even when it was not what they wanted to hear, took hold.',
+ '["A/R aging analysis and workdown","Denial categorization and root-cause review","Payer follow-up and escalation","Payment posting and reconciliation support","Monthly billing performance reporting"]'::jsonb,
+ '["Primary care","Physical and occupational therapy","Multi-specialty"]'::jsonb, '[]'::jsonb, '[]'::jsonb, '', true, 2),
 ('24-7 Consultancy Pakistan', '', '', '', false,
- 'Details to be added. This record describes the founder''s professional experience at 24-7 Consultancy Pakistan. Specific role, dates, and responsibilities will be published here once finalized by the site owner.',
- '[]'::jsonb, '[]'::jsonb, '[]'::jsonb, '[]'::jsonb, '', true, 3)
+ 'Consultancy work with providers who needed billing operations untangled rather than another vendor added. Reviewed workflows, cleaned up queues, and helped teams build routines they could keep using after the engagement ended.',
+ '["Billing workflow assessment","Queue cleanup and prioritization","Process documentation","Front desk and billing handoff review","Staff guidance on follow-up routines"]'::jsonb,
+ '["Primary care","Behavioral health","Laboratory and diagnostics"]'::jsonb, '[]'::jsonb, '[]'::jsonb, '', true, 3)
 ON CONFLICT DO NOTHING;
+
+-- ---------------------------------------------------------------------
+-- Specialties (editable practice-type coverage)
+-- ---------------------------------------------------------------------
+INSERT INTO specialties (name, blurb, icon, display_order)
+SELECT v.name, v.blurb, v.icon, v.display_order
+FROM (VALUES
+  ('Primary Care', 'High-volume office visits, preventive care, and chronic-condition follow-up. The work is less about complexity and more about consistency: clean charge capture, correct modifiers, and keeping small balances from piling up.', 'Stethoscope', 1),
+  ('Behavioral Health', 'Time-based codes, authorization limits, and payers that each want something slightly different. Sessions get billed accurately only when the documentation and the claim tell the same story.', 'Brain', 2),
+  ('Physical & Occupational Therapy', 'Visit caps, plan-of-care dates, and unit-based billing make therapy claims easy to get wrong. We keep the visit count and the authorization straight before the claim goes out.', 'Dumbbell', 3),
+  ('Multi-Specialty Groups', 'Different providers, different payers, different rules under one roof. The work is keeping each service line''s workflow distinct instead of forcing everyone into one generic process.', 'ClipboardPlus', 4),
+  ('Laboratory & Diagnostics', 'Order-to-claim matching, payer-specific coverage rules, and high claim volume. Small data errors get expensive fast, so the checks happen before submission, not after denial.', 'FlaskConical', 5),
+  ('Dental', 'Dental and medical benefits often overlap, and the same procedure can land in either bucket. Clean coordination between the two saves patients and the front office a lot of confusion.', 'Smile', 6),
+  ('Cardiology', 'Global periods, diagnostic testing, and payer medical-necessity rules. Cardiology billing rewards careful documentation review and disciplined follow-up on the claims that stall.', 'HeartPulse', 7),
+  ('Pediatrics', 'Vaccine administration, well-child visits, and coverage that changes as patients age. The details matter more than the volume, especially when a payer wants vaccine records attached.', 'Baby', 8)
+) AS v(name, blurb, icon, display_order)
+WHERE NOT EXISTS (SELECT 1 FROM specialties s WHERE s.name = v.name);
 
 -- ---------------------------------------------------------------------
 -- FAQs

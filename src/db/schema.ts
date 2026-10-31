@@ -73,7 +73,7 @@ export const experiences = pgTable(
     id: uuid("id").primaryKey().defaultRandom(),
     organization: text("organization").notNull(),
     role: text("role").notNull().default(""),
-    startDate: text("start_date").notNull().default(""), // stored as free text e.g. "2022-04"; empty = to be added
+    startDate: text("start_date").notNull().default(""), // stored as free text e.g. "2022-04"; empty = hidden on public page
     endDate: text("end_date").notNull().default(""),
     isCurrent: boolean("is_current").notNull().default(false),
     description: text("description").notNull().default(""),

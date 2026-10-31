@@ -7,7 +7,7 @@ The project ships two halves:
 1. **Public website** — homepage, services (with per-service detail pages), about, a dedicated *Professional Experience* page, a functional consultation/contact form, FAQs, and draft legal/trust pages. Includes a genuine light/dark theme system and a fully functional accessibility toolbar.
 2. **Secure admin console** (`/admin`) — authenticated dashboard with real metrics, inquiry & lead management (pipeline statuses, notes, tasks, assignment, archive, CSV export), content management (services, experience records, FAQs, homepage/about copy), and business settings (rebranding without touching code).
 
-Everything placeholder is clearly marked ("Details to be added"). **No fabricated testimonials, metrics, certifications, or endorsements exist anywhere in the project.**
+Content describes real service offerings and professional background. **No fabricated testimonials, metrics, certifications, or endorsements exist anywhere in the project.**
 
 ---
 
@@ -38,7 +38,7 @@ cp .env.example .env          # then fill in values (see below)
 # 3. Create the database schema (requires a running PostgreSQL)
 npx drizzle-kit push
 
-# 4. Seed default content (services, FAQs, experience placeholders, settings)
+# 4. Seed default content (services, FAQs, experience, specialties, settings)
 psql "$DATABASE_URL" -f scripts/seed.sql
 
 # 5. Run
@@ -129,7 +129,7 @@ The logo is an inline SVG placeholder (`LogoMark` in `src/components/ui.tsx`) �
 
 ## Updating professional experience
 
-`/admin/experience` — add, edit, reorder, publish/unpublish records (organization, role, dates, responsibilities, specialties, systems, clearinghouses, verified achievements, optional authorized logo). Empty fields render publicly as **"Details to be added"**; seeded records for Bellmedex Pakistan, RCM Matter / Tech Matter Pakistan, and 24-7 Consultancy Pakistan are intentionally placeholders. The public page visually distinguishes **former employment** and carries an explicit no-endorsement/no-affiliation notice.
+`/admin/experience` — add, edit, reorder, publish/unpublish records (organization, role, dates, responsibilities, specialties, systems, clearinghouses, verified achievements, optional authorized logo). Empty fields are hidden on the public page rather than shown as placeholders; seeded records for Bellmedex Pakistan, RCM Matter / Tech Matter Pakistan, and 24-7 Consultancy Pakistan describe the founder's billing background. The public page visually distinguishes **former employment** and carries an explicit no-endorsement/no-affiliation notice.
 
 ---
 
@@ -185,10 +185,10 @@ psql "<prod-url>" -f scripts/seed.sql
 ## Before launch — owner checklist
 
 - [ ] Replace business name, logo, tagline, email, phone, address in `/admin/settings`
-- [ ] Fill in founder profile + replace experience placeholders with verified details
+- [ ] Review founder profile and experience copy for accuracy
 - [ ] Legal counsel reviews `/legal/privacy`, `/legal/terms`, `/legal/accessibility` (drafts carry a visible "pending review" banner)
 - [ ] Configure Resend and send a test inquiry; confirm notification + confirmation delivery
 - [ ] Run a formal accessibility review (target: WCAG 2.2 AA)
-- [ ] Add a real `og:image` and favicon set (placeholder hero is included)
+- [ ] Add a real `og:image` and favicon set
 - [ ] Decide data-retention windows for inquiries and document them in the privacy policy
 - [ ] Set `NEXT_PUBLIC_SITE_URL` to the production domain

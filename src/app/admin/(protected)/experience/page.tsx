@@ -31,7 +31,7 @@ export default async function AdminExperiencePage({
         <div>
           <h1 className="font-display text-3xl font-extrabold tracking-tight text-foreground">Professional experience</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Publish only what is accurate. Empty fields display as "Details to be added" — never fabricate specifics.
+            Publish only what is accurate. Empty fields are hidden on the public page, so nothing looks unfinished.
           </p>
         </div>
         <Link
@@ -61,7 +61,7 @@ export default async function AdminExperiencePage({
             <Field label="Organization" htmlFor="organization" required>
               <input id="organization" name="organization" type="text" required maxLength={160} defaultValue={editing?.organization ?? ""} className={inputClass} />
             </Field>
-            <Field label="Role / job title" htmlFor="role" hint="Leave empty to show 'Role details to be added'.">
+            <Field label="Role / job title" htmlFor="role" hint="Leave empty to hide the role line.">
               <input id="role" name="role" type="text" maxLength={160} defaultValue={editing?.role ?? ""} className={inputClass} />
             </Field>
             <Field label="Start date" htmlFor="startDate" hint="e.g. Apr 2021 — leave empty if not finalized.">
@@ -71,7 +71,7 @@ export default async function AdminExperiencePage({
               <input id="endDate" name="endDate" type="text" maxLength={30} defaultValue={editing?.endDate ?? ""} className={inputClass} />
             </Field>
             <div className="sm:col-span-2">
-              <Field label="Description" htmlFor="description" hint="Honest overview of the work. Placeholder copy is fine until finalized.">
+              <Field label="Description" htmlFor="description" hint="Honest overview of the work. Keep it accurate and specific.">
                 <textarea id="description" name="description" rows={4} maxLength={8000} defaultValue={editing?.description ?? ""} className={inputClass} />
               </Field>
             </div>
@@ -165,7 +165,7 @@ export default async function AdminExperiencePage({
                     </span>
                   </td>
                   <td className="px-5 py-3.5 font-bold text-foreground">{exp.organization}</td>
-                  <td className="px-5 py-3.5 text-muted-foreground">{exp.role || <em>To be added</em>}</td>
+                  <td className="px-5 py-3.5 text-muted-foreground">{exp.role || <span aria-label="Not set">—</span>}</td>
                   <td className="px-5 py-3.5">
                     <form action={toggleExperiencePublished}>
                       <input type="hidden" name="id" value={exp.id} />

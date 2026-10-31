@@ -16,7 +16,7 @@ export const siteDefaults = {
   tagline: "Independent medical billing & revenue cycle support for US healthcare providers.",
   email: "webloomofficial@gmail.com",
   phone: "+92 (317) 935-6276",
-  address: "Business address to be added", // placeholder
+  address: "Remote practice serving US healthcare providers",
   websiteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   logoUrl: null as string | null,
   notifyEmail: "", // falls back to `email` when empty
@@ -30,9 +30,9 @@ export const siteDefaults = {
 };
 
 export const founderDefaults = {
-  name: "Founder & Billing Specialist", // placeholder — replace in admin settings
-  headline: "Independent medical billing professional",
-  bio: "Founder biography to be added. This section is managed from the admin settings page and should introduce the founder's background, working style, and the motivation behind starting an independent medical billing practice.",
+  name: "Ali Mukhtar",
+  headline: "Founder, Bloom RCM",
+  bio: "I am Ali Mukhtar. I have spent my career in medical billing and revenue cycle work, mostly on the unglamorous side: eligibility checks, claim edits, payer follow-up, denial queues, and the reporting that tells you whether any of it is working. I worked inside billing teams at Bellmedex, RCM Matter, and 24-7 Consultancy, where I learned that most revenue problems are process problems long before they are people problems. Bloom RCM is my attempt to do the work the way I always wished it was done: documented, honest, and accountable. I am not a large call center, and I don't pretend to be. I take on a limited number of practices so I can actually know their accounts.",
 };
 
 export const PRACTICE_TYPES = [
@@ -229,7 +229,7 @@ export const legalPages: LegalPage[] = [
       {
         heading: "4. Known limitations",
         paragraphs: [
-          "As a new website, some content sections are placeholders pending final business information. Placeholder areas are designed to the same accessibility standard as finished content. Any issues discovered will be addressed as part of the ongoing accessibility review.",
+          "Accessibility is an ongoing effort, not a one-time checklist. New pages and features are reviewed against WCAG 2.2 AA as they are added, and older content is revisited when issues are reported. We do not claim perfect conformance; we do commit to fixing barriers promptly.",
         ],
       },
       {

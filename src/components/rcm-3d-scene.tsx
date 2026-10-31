@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
   BadgeCheck,
@@ -89,13 +88,22 @@ export function Rcm3DScene({ className }: { className?: string }) {
 
         {/* Main visual plane */}
         <div className="rcm-scene-main absolute inset-[7%] overflow-hidden rounded-[1.75rem] border border-white/20 bg-navy shadow-2xl">
-          <Image
-            src="/images/hero.jpg"
-            alt="Abstract connected medical billing and revenue cycle workflow"
-            fill
-            priority
-            sizes="(max-width: 1024px) 90vw, 44vw"
-            className="object-cover"
+          <div
+            aria-hidden="true"
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(circle at 30% 20%, rgba(45,212,191,0.30), transparent 45%), radial-gradient(circle at 75% 65%, rgba(59,130,246,0.38), transparent 50%), linear-gradient(160deg, #0b1f3a 0%, #102a4c 55%, #0a1a30 100%)",
+            }}
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-[0.18]"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)",
+              backgroundSize: "36px 36px",
+            }}
           />
           <div
             aria-hidden="true"

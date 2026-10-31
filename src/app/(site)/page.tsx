@@ -302,7 +302,7 @@ export default async function HomePage() {
                     {exp.organization.slice(0, 2).toUpperCase()}
                   </span>
                   <h3 className="font-display text-base font-bold leading-snug text-foreground">{exp.organization}</h3>
-                  <p className="mt-1 text-sm font-semibold text-muted-foreground">{exp.role || "Role details to be added"}</p>
+                  <p className="mt-1 text-sm font-semibold text-muted-foreground">{exp.role || "Medical billing & revenue cycle"}</p>
                   <p className="mt-auto pt-4 text-xs font-bold uppercase tracking-wider text-accent">
                     {exp.isCurrent ? "Current" : "Former employment"}
                   </p>

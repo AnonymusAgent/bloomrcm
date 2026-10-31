@@ -24,23 +24,20 @@ function DetailBlock({
   title: string;
   items: string[];
 }) {
+  if (items.length === 0) return null;
   return (
     <div>
       <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
         <IconCmp className="h-4 w-4 text-accent" aria-hidden="true" />
         {title}
       </h4>
-      {items.length > 0 ? (
-        <ul className="mt-2.5 flex flex-wrap gap-2" role="list">
-          {items.map((item) => (
-            <li key={item} className="rounded-full border border-border bg-background-subtle px-3 py-1 text-xs font-semibold text-foreground">
-              {item}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="mt-2 text-sm italic text-muted-foreground">Details to be added</p>
-      )}
+      <ul className="mt-2.5 flex flex-wrap gap-2" role="list">
+        {items.map((item) => (
+          <li key={item} className="rounded-full border border-border bg-background-subtle px-3 py-1 text-xs font-semibold text-foreground">
+            {item}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -48,7 +45,7 @@ function DetailBlock({
 function ExperienceCard({ exp, index }: { exp: Experience; index: number }) {
   const dateRange = exp.startDate
     ? `${exp.startDate} — ${exp.isCurrent ? "Present" : exp.endDate || "—"}`
-    : "Dates to be added";
+    : null;
   return (
     <li className="relative pl-10 sm:pl-14">
       {/* timeline spine */}
@@ -63,10 +60,10 @@ function ExperienceCard({ exp, index }: { exp: Experience; index: number }) {
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h3 className="font-display text-xl font-extrabold text-foreground sm:text-2xl">{exp.organization}</h3>
-            <p className="mt-1 text-[15px] font-bold text-primary">{exp.role || "Role details to be added"}</p>
+            {exp.role ? <p className="mt-1 text-[15px] font-bold text-primary">{exp.role}</p> : null}
           </div>
           <div className="text-right">
-            <p className="text-sm font-semibold text-muted-foreground">{dateRange}</p>
+            {dateRange ? <p className="text-sm font-semibold text-muted-foreground">{dateRange}</p> : null}
             <p className="mt-1 inline-flex rounded-full bg-accent-soft px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-foreground">
               {exp.isCurrent ? "Current role" : "Former employment"}
             </p>
@@ -75,9 +72,7 @@ function ExperienceCard({ exp, index }: { exp: Experience; index: number }) {
 
         {exp.description ? (
           <p className="mt-4 text-[15px] leading-[1.75] text-muted-foreground">{exp.description}</p>
-        ) : (
-          <p className="mt-4 text-sm italic text-muted-foreground">Details to be added</p>
-        )}
+        ) : null}
 
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           <DetailBlock icon={Layers} title="Billing workflows handled" items={exp.responsibilities} />
@@ -86,20 +81,15 @@ function ExperienceCard({ exp, index }: { exp: Experience; index: number }) {
           <DetailBlock icon={Server} title="Clearinghouse experience" items={exp.clearinghouses} />
         </div>
 
-        <div className="mt-6">
-          <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
-            <Trophy className="h-4 w-4 text-accent" aria-hidden="true" />
-            Verified achievements &amp; measurable outcomes
-          </h4>
-          {exp.achievements ? (
+        {exp.achievements ? (
+          <div className="mt-6">
+            <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
+              <Trophy className="h-4 w-4 text-accent" aria-hidden="true" />
+              Verified achievements &amp; measurable outcomes
+            </h4>
             <p className="mt-2.5 text-[15px] leading-relaxed text-foreground">{exp.achievements}</p>
-          ) : (
-            <p className="mt-2 text-sm italic text-muted-foreground">
-              Details to be added. Achievements are published here only when they can be described accurately and
-              verified — never inflated.
-            </p>
-          )}
-        </div>
+          </div>
+        ) : null}
       </Card>
     </li>
   );
@@ -121,7 +111,7 @@ export default async function ExperiencePage() {
               The background behind the business
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-              {settings.name} is a new independent practice — but it is not built from theory. The founder's
+              {settings.name} is a new independent practice — but it is not built from theory. The founder&apos;s
               professional work inside established medical billing and RCM organizations is what shapes the documented,
               workflow-first approach this company runs on.
             </p>
@@ -139,9 +129,8 @@ export default async function ExperiencePage() {
             <Info className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
             <p className="text-sm leading-relaxed text-foreground">
               <strong className="font-bold">A note on independence:</strong> the organizations listed below are the
-              founder's <em>previous employers</em>. They are shown to describe professional background only — they do
-              not endorse, sponsor, partner with, or hold any affiliation with {settings.name}. Dates, roles, and
-              achievements marked "to be added" will be published once finalized, and are never fabricated.
+              founder&apos;s <em>previous employers</em>. They are shown to describe professional background only.
+              They do not endorse, sponsor, partner with, or hold any affiliation with {settings.name}.
             </p>
           </div>
         </Container>

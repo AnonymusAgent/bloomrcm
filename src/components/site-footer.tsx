@@ -112,7 +112,7 @@ export function SiteFooter({ settings, services }: { settings: Settings; service
 
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-border pt-6 sm:flex-row sm:items-center">
           <p className="text-xs text-muted-foreground">
-            © {year} {settings.name}. Business details shown are configurable placeholders.
+            © {year} {settings.name}. All rights reserved.
           </p>
           <nav aria-label="Legal">
             <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-semibold">

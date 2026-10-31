@@ -28,9 +28,9 @@ export default async function AboutPage() {
               An independent billing partner, built deliberately
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-              {settings.name} is a new independent medical billing and revenue cycle management practice founded by a
-              medical billing professional — built from real, hands-on billing operations experience rather than a
-              franchise playbook.
+              {settings.name} is a small, independent billing practice. No call-center scripts, no layers of account
+              managers, no generic playbook. Just documented revenue cycle work, reporting you can actually read, and
+              a person who knows your account by name.
             </p>
           </div>
         </Container>
@@ -83,9 +83,10 @@ export default async function AboutPage() {
                 Confidentiality &amp; accuracy
               </h3>
               <p className="mt-3 text-sm leading-[1.75] text-muted-foreground">
-                Accuracy, communication, confidentiality, and workflow consistency are treated as operating
-                requirements. Access to any practice or billing data happens only after written agreements define the
-                boundaries; public inquiries through this website never request or accept patient information.
+                You are handing over access to the systems your practice runs on, and that is not a small thing.
+                Access stays limited to what the work requires, agreements are signed before anything is touched, and
+                the inquiry form on this site is for business contact details only. Never send patient information
+                through it.
               </p>
             </Card>
           </div>
@@ -122,9 +123,8 @@ export default async function AboutPage() {
             <p className="mt-4 text-base leading-[1.8] text-muted-foreground">{about.founderBio}</p>
             {experiences.length > 0 ? (
               <p className="mt-4 text-base leading-[1.8] text-muted-foreground">
-                Before starting this practice, the founder worked in medical billing and revenue cycle operations at{" "}
-                {experiences.map((e) => e.organization).join(", ")} — experience that directly informs this company&apos;s
-                documented, workflow-first approach.
+                That background is why the workflows here are built around payer behavior, clean handoffs, and
+                documentation you can audit, not around what sounds good in a sales deck.
               </p>
             ) : null}
             <p className="mt-6">
@@ -145,7 +145,7 @@ export default async function AboutPage() {
             id="onboarding-heading"
             eyebrow="Client onboarding"
             title="A structured start for every engagement"
-            description="Onboarding is a sequence of explicit, approved steps — not a leap of faith."
+            description="A clear, written start. You approve each step before the next one begins."
           />
           <Card className="p-7">
             <div className="flex items-start gap-4">
